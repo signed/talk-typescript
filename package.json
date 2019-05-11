@@ -1,0 +1,9 @@
+{
+  "name": "talk-typescript",
+  "description": "talk about nice features in typescript",
+  "private": true,
+  "devDependencies": {
+    "ts-node": "8.1.0",
+    "typescript": "3.4.5"
+  }
+}
