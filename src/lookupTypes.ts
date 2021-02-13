@@ -4,6 +4,25 @@
 
 interface SomeInterface{
     justAProperty: Date;
+    anotherOne: string;
 }
 
-type TypeOfJustAProperty = SomeInterface['justAProperty']
+const instance: SomeInterface = {
+    anotherOne: 'flupp', justAProperty: new Date()
+
+}
+
+type TypeOfJustAProperty = SomeInterface['justAProperty'];
+type AllPropertiesOfSomeInterface = keyof SomeInterface;
+
+const accessProperty = ( obj: SomeInterface, key: AllPropertiesOfSomeInterface) => {
+    return obj[key]
+}
+
+const _first = accessProperty(instance, 'anotherOne' )
+
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key]; // Inferred type is T[K]
+}
+
+const _second = getProperty(instance, 'justAProperty')
