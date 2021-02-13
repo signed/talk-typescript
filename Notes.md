@@ -25,3 +25,8 @@ The compiler will not complain, but you will not get typesafety.
 Any file containing a top-level import or export is considered a module.
 Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well).
 A script is a file with no imports or exports.
+
+
+## Interesting series introducing typescript features
+- https://dev.to/busypeoples/notes-on-typescript-mapped-types-and-lookup-types-i36
+- https://mariusschulz.com/blog/series/typescript-evolution
