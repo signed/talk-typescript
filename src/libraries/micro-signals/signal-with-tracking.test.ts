@@ -1,5 +1,5 @@
 import { ReadableSignal, Signal } from 'micro-signals';
-import { SignalWithTracking, TrackingContext } from './signal-with-tracking';
+import { SignalWithTracking, Tag, TrackingContext } from './signal-with-tracking';
 
 test('should ', () => {
     const signal = new Signal<string>();
@@ -7,7 +7,7 @@ test('should ', () => {
     const trackingContext: TrackingContext<string> = {
         signal,
         signalsWithSubscription: new Set<ReadableSignal<unknown>>(),
-        tag: { marker: 'one' }
+        tag: new Tag('one')
     };
     const trackedSignal: ReadableSignal<string> = new SignalWithTracking(trackingContext);
 

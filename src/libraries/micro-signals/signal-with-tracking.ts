@@ -1,7 +1,12 @@
 import { ReadableSignal, Listener, Cache, Accumulator } from 'micro-signals';
 
+export class Tag{
+    constructor(private readonly id: string) {
+    }
+}
+
 export interface TrackingContext<T> {
-    tag: Object;
+    tag: Tag;
     //should ths be a WeakReference?
     signal: ReadableSignal<T>
     // should this be a WeakSet?
