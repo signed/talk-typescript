@@ -1,50 +1,56 @@
-import { ReadableSignal, Listener, Cache, Accumulator } from 'micro-signals';
+import { Accumulator, Cache, Listener, ReadableSignal } from 'micro-signals';
 
-export class Tag{
+export class Tag {
     constructor(private readonly id: string) {
+    }
+
+    toString(){
+        return `Tag: ${this.id}`;
     }
 }
 
-export interface TrackingContext<T> {
-    tag: Tag;
-    //should ths be a WeakReference?
-    signal: ReadableSignal<T>
+export interface TrackingContext {
+    readonly tag: Tag;
     // should this be a WeakSet?
-    signalsWithSubscription: Set<ReadableSignal<unknown>>
+    readonly signalsWithSubscription: Set<ReadableSignal<unknown>>;
+    active: boolean;
 }
 
-export const trackingContext = <T>(previous: TrackingContext<unknown>, signal: ReadableSignal<T>): TrackingContext<T> => {
-    return {
-        tag: previous.tag,
-        signalsWithSubscription: previous.signalsWithSubscription,
-        signal
-    };
+const ensureNoTagsPassed = (tags: any[]) => {
+    if (tags.length > 0) {
+        throw new Error('lets check why there are already tags');
+    }
 };
 
-const signalWithTracking = <T>(previous: TrackingContext<unknown>, signal: ReadableSignal<T>) => {
-    const updateContext = trackingContext(previous, signal);
-    return new SignalWithTracking(updateContext);
+export const trackListenersAddedTo = <T>(signal: ReadableSignal<T>, trackingContext: TrackingContext) => {
+    return new SignalWithTracking(signal, trackingContext);
 };
 
 export class SignalWithTracking<T> implements ReadableSignal<T> {
+    //should this be a WeakReference?
+    private readonly wrapped: ReadableSignal<T>;
 
-    constructor(private readonly trackingContext: TrackingContext<T>) {
+    constructor(signal: ReadableSignal<T>, readonly trackingContext: TrackingContext) {
+        this.wrapped = signal;
     }
 
     add(listener: Listener<T>, ...tags: any[]): void {
-        if (tags === undefined) {
-            throw new Error('lets check this');
+        ensureNoTagsPassed(tags);
+        if (!this.trackingContext.active) {
+            return;
         }
-        const signal = this.signal();
+        const signal = this.wrappedSignal();
         signal.add(listener, this.trackingContext.tag);
         this.trackingContext.signalsWithSubscription.add(this);
     }
 
     addOnce(listener: Listener<T>, ...tags: any[]): void {
-        if (tags === undefined) {
-            throw new Error('lets check this');
+        ensureNoTagsPassed(tags);
+        if (!this.trackingContext.active) {
+            return;
+
         }
-        const signal = this.signal();
+        const signal = this.wrappedSignal();
         signal.addOnce(listener, this.trackingContext.tag);
         this.trackingContext.signalsWithSubscription.add(this);
     }
@@ -53,38 +59,40 @@ export class SignalWithTracking<T> implements ReadableSignal<T> {
         if (this.trackingContext.tag === listenerOrTag) {
             this.trackingContext.signalsWithSubscription.delete(this);
         }
-        this.signal().remove(listenerOrTag);
+        this.wrappedSignal().remove(listenerOrTag);
     }
 
     cache(cache: Cache<T>): ReadableSignal<T> {
-        const cachedSignal = this.trackingContext.signal.cache(cache);
-        return signalWithTracking(this.trackingContext, cachedSignal);
+        const cachedSignal = this.wrappedSignal().cache(cache);
+        return trackListenersAddedTo(cachedSignal, this.trackingContext);
     }
 
     filter<U extends T>(filter: (payload: T) => payload is U): ReadableSignal<U>;
     filter(filter: (payload: T) => boolean): ReadableSignal<T>;
     filter(filter: any): any {
-        const filtered = this.signal().filter(filter);
-        return signalWithTracking(this.trackingContext, filtered);
+        const filtered = this.wrappedSignal().filter(filter);
+        return trackListenersAddedTo(filtered, this.trackingContext);
     }
 
     map<U>(transform: (payload: T) => U): ReadableSignal<U> {
-        const mappedSignal = this.trackingContext.signal.map(transform);
-        return signalWithTracking(this.trackingContext, mappedSignal);
+        const mappedSignal = this.wrappedSignal().map(transform);
+        return trackListenersAddedTo(mappedSignal, this.trackingContext);
     }
 
     merge<U>(...signals: ReadableSignal<U>[]): ReadableSignal<T | U> {
-        const merged = this.trackingContext.signal.merge(...signals);
-        return signalWithTracking(this.trackingContext, merged);
+        const merged = this.wrappedSignal().merge(...signals);
+        return trackListenersAddedTo(merged, this.trackingContext);
     }
 
     peek(peekaboo: (payload: T) => void): ReadableSignal<T> {
-        this.signal().peek(peekaboo);
+        this.wrappedSignal().peek(peekaboo);
         return this;
     }
 
     promisify(rejectSignal?: ReadableSignal<any>): Promise<T> {
-        return this.signal().promisify(rejectSignal);
+        // do we have to keep track of the promise an cancel it somehow?
+        // do an active check here as well?
+        return this.wrappedSignal().promisify(rejectSignal);
     }
 
     readOnly(): ReadableSignal<T> {
@@ -92,11 +100,11 @@ export class SignalWithTracking<T> implements ReadableSignal<T> {
     }
 
     reduce<U>(accumulator: Accumulator<T, U>, initialValue: U): ReadableSignal<U> {
-        const reducedSignal = this.signal().reduce(accumulator, initialValue);
-        return signalWithTracking(this.trackingContext, reducedSignal);
+        const reducedSignal = this.wrappedSignal().reduce(accumulator, initialValue);
+        return trackListenersAddedTo(reducedSignal, this.trackingContext);
     }
 
-    private signal() {
-        return this.trackingContext.signal;
+    private wrappedSignal() {
+        return this.wrapped;
     }
 }
