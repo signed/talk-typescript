@@ -40,4 +40,4 @@ type isNotEmpty = Empty<{ name: string }>; // false
 type Bang<T extends [...any]> = T['length'] extends 1 ? true : void;
 type TooShort = Bang<[]>
 type CorrectLength = Bang<[string]>
-type TooLong = Bang<[string]>
+type TooLong = Bang<[string, string]>
