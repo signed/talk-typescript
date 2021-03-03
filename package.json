@@ -6,13 +6,13 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "7.12.17",
-    "@babel/preset-env": "7.12.17",
-    "@babel/preset-typescript": "7.12.17",
+    "@babel/core": "7.13.8",
+    "@babel/preset-env": "7.13.9",
+    "@babel/preset-typescript": "7.13.0",
     "@types/jest": "26.0.20",
     "jest": "26.6.3",
     "ts-node": "9.1.1",
-    "typescript": "4.1.5"
+    "typescript": "4.2.2"
   },
   "volta": {
     "node": "15.8.0",
