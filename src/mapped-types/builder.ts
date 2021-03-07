@@ -1,6 +1,14 @@
-type Builder<T> = {
+type FluentBuilder<T> = {
     [Property in keyof T as `with${Capitalize<string & Property>}`]: (value: T[Property]) => Builder<T>
-} & { build(): T }
+}
+
+// mainly exist to ease code generation in the IDE
+// did not find a way yet to make the properties private
+type Properties<T> = {
+    [Property in keyof T]: T[Property] | undefined
+}
+
+type Builder<T> = FluentBuilder<T> & Properties<T> & { build(): T }
 
 interface Data {
     one: string;
@@ -16,14 +24,16 @@ const ensure = <T>(value: T | undefined): T => {
 };
 
 class Hmm implements DataBuilder {
-    private one: string | undefined;
-    private two: number | undefined;
+    one: string | undefined;
+    two: number | undefined;
 
     withOne(value: Data['one']): this {
+        this.one = value
         return this;
     }
 
     withTwo(value: Data['two']): this {
+        this.two = value
         return this;
     }
 
