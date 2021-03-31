@@ -24,26 +24,23 @@ const ensure = <T>(value: T | undefined): T => {
 };
 
 class Hmm implements DataBuilder {
-    one: string | undefined;
-    two: number | undefined;
-
-    withOne(value: Data['one']): this {
+    one: Data["one"] | undefined;
+    two: Data["two"] | undefined;
+    withOne<Property>(value: Data["one"]): Builder<Data> {
         this.one = value
         return this;
     }
 
-    withTwo(value: Data['two']): this {
+    withTwo<Property>(value: Data["two"]): Builder<Data> {
         this.two = value
         return this;
     }
 
     build(): Data {
-        const one = ensure(this.one)
-        const two = ensure(this.two);
-        return {
-            one: one,
-            two: two
-        };
+        if (this.one === undefined || this.two === undefined) {
+            throw new Error()
+        }
+        return { one: this.one, two: this.two };
     }
 }
 
