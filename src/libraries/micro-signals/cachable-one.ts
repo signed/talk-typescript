@@ -1,10 +1,10 @@
-type Maybe<T> = undefined | T
+import { Maybe } from './maybe';
 
 interface ValueCache {
     value(): Maybe<string>
 }
 
-type Cached<T extends Cacheable<T>> =  ValueCache & Omit<T, 'cache'>
+type Cached<T extends Cacheable<T>> = ValueCache & Omit<T, 'cache'>
 
 interface Cacheable<T extends Cacheable<T>> {
     cache(): Cached<T>
@@ -20,7 +20,7 @@ interface Writable<T> {
 
 class DefaultSignal<T> implements Writable<T>, Readable<T>, Cacheable<DefaultSignal<T>> {
     dispatch(value: T): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     filter(): this {
@@ -28,13 +28,15 @@ class DefaultSignal<T> implements Writable<T>, Readable<T>, Cacheable<DefaultSig
     }
 
     cache(): Cached<this> {
-        return undefined;
+        throw new Error('implement me');
     }
 }
 
 const readable = new DefaultSignal<string>();
 const cached = readable.cache();
-const wohooo = cached.value();
 
-cached.dispatch('one')
+// @ts-expect-error
+cached.cache();
+
+cached.dispatch('one');
 
