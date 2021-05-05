@@ -40,7 +40,7 @@ export const introspect = <T extends object>(object: T): T => {
             console.log('tracer: defineProperty');
             return Reflect.defineProperty(target, p, attributes);
         },
-        ownKeys(target: T): PropertyKey[] {
+        ownKeys(target: T): ArrayLike<string | symbol> {
             console.log('tracer: ownKeys');
             return Reflect.ownKeys(target);
         },

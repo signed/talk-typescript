@@ -11,12 +11,13 @@ export class Banana {
     }
 }
 
+
 type PeelType = Banana['peel']
 type PeelParameters = Parameters<PeelType>
 
 const track = (peel: PeelType): PeelType =>  {
     const handler: ProxyHandler<PeelType> = {
-        apply(target: PeelType, thisArg: any, argArray?: PeelParameters): string {
+        apply(target: PeelType, thisArg: any, argArray: PeelParameters): string {
             let one = argArray ? argArray[0] : undefined;
             if (one === undefined) {
                one = 'slow'
