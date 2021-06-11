@@ -14,8 +14,9 @@ current = 'yellow';
  This means that a string literal type is assignable to a plain string, but not vice-versa.
  */
 
-// Template literal types
-//https://ikoshelev.azurewebsites.net/search/id/16/Pragmatic-uses-of-TypeScript-type-system-03-Tag-hierarchies-via-Template-Literal-Types?utm_source=typescript-weekly.com&utm_campaign=typescript_weekly_171&utm_medium=email
+// Template literal types https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html
+// https://ikoshelev.azurewebsites.net/search/id/16/Pragmatic-uses-of-TypeScript-type-system-03-Tag-hierarchies-via-Template-Literal-Types?utm_source=typescript-weekly.com&utm_campaign=typescript_weekly_171&utm_medium=email
+// https://github.com/IKoshelev/typescript-multimethod-type-tag-hierarchy
 
 type VanTag = `van${string}`;
 const vanTag: VanTag = `van`;
