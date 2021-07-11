@@ -7,13 +7,13 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@babel/core": "7.14.5",
-    "@babel/preset-env": "7.14.5",
+    "@babel/core": "7.14.6",
+    "@babel/preset-env": "7.14.7",
     "@babel/preset-typescript": "7.14.5",
-    "@types/jest": "26.0.23",
-    "jest": "27.0.4",
-    "ts-node": "10.0.0",
-    "typescript": "4.3.2"
+    "@types/jest": "26.0.24",
+    "jest": "27.0.6",
+    "ts-node": "10.1.0",
+    "typescript": "4.3.5"
   },
   "volta": {
     "node": "15.8.0",
