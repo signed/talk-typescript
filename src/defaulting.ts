@@ -1,3 +1,4 @@
+export default {}
 // basic function parameter defaulting
 const func = (one: number, two: string = 'default') => {
     console.log(`one: ${one} two: ${two}`);
@@ -8,7 +9,7 @@ func(2, 'override');
 
 // Type parameter defaults
 class Component<Properties = {}, State = {}> {
-    constructor(private props: Properties, private state: State) {
+    constructor(private _props: Properties, private _state: State) {
     }
 }
 
