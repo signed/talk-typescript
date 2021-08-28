@@ -2,12 +2,12 @@
 
 interface Theme {
     type: 'ui.theme';
-    flavour: 'Specular' | 'Amos' | 'Folie';
+    value: 'Specular' | 'Amos' | 'Folie';
 }
 
 interface Mode {
     type: 'ui.mode';
-    mode: 'dark' | 'light';
+    value: 'dark' | 'light';
 }
 
 type SupportedLanguage = 'EO' | 'EN' | 'ZH' | 'ES'
@@ -19,8 +19,10 @@ interface Language {
 
 interface AutoSave {
     type: 'editor.auto-save';
-    value: boolean;
-    interval: number;
+    value: {
+        value: boolean;
+        interval: number;
+    }
 }
 
 type Settings = {
@@ -38,6 +40,6 @@ export const settingFor = <T extends keyof Settings>(id: T, settings: Setting[])
     return find as Settings[T];
 };
 
-const setting = settingFor('editor.auto-save', []);
-setting.value;
-setting.interval;
+const { value } = settingFor('editor.auto-save', []);
+value.value;
+value.interval;
