@@ -34,12 +34,11 @@ type Settings = {
 
 type Setting = Theme | Mode | Language | AutoSave
 
-
 export const settingFor = <T extends keyof Settings>(id: T, settings: Setting[]) => {
     const find = settings.find(setting => setting.type === id);
-    return find as Settings[T];
+    return find as Settings[T];  //this is a lie
 };
 
-const { value } = settingFor('editor.auto-save', []);
-value.value;
-value.interval;
+const setting = settingFor('editor.auto-save', []);
+setting.value.value;
+setting.value.interval;
