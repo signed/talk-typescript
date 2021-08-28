@@ -30,3 +30,6 @@ A script is a file with no imports or exports.
 ## Interesting series introducing typescript features
 - https://dev.to/busypeoples/notes-on-typescript-mapped-types-and-lookup-types-i36
 - https://mariusschulz.com/blog/series/typescript-evolution
+
+## Introduction to structural typing
+- https://www.youtube.com/watch?v=zfQgsGXTpOg
