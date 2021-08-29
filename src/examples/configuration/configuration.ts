@@ -37,7 +37,22 @@ const defaults: Defaults = {
 }
 
 type SettingsReturn<T extends SettingIdentifier> = T extends keyof Defaults ? Settings[T] : Settings[T] | undefined
+
 declare function settingFantasyFor<T extends keyof Settings>(id: T, settings: Setting[]): SettingsReturn<T>
 
 var lang = settingFantasyFor('general.language', [])
 var auto = settingFantasyFor('editor.auto-save', [])
+
+// fake it till you make it
+function settingOverloadFor<T extends SettingsWithDefault>(id: T, settings: Setting[]): Settings[T]
+function settingOverloadFor<T extends keyof Settings>(id: T, settings: Setting[]): Settings[T] | undefined
+function settingOverloadFor<T extends keyof Settings>(id: T, settings: Setting[]) {
+  const found = settings.find((setting) => setting.type === id)
+  if (found !== undefined) {
+    return found
+  }
+  return defaults[id as SettingsWithDefault]
+}
+
+const result = settingOverloadFor('general.language', [])
+const blub = settingOverloadFor('editor.auto-save', [])
