@@ -7,24 +7,32 @@
  *
  * It will just expose the keys of any given interface/type through a union
  */
-type KeyOfAny = keyof any  // string | number | symbol
+type KeyOfAny = keyof any // string | number | symbol
 type KeyOfUnknown = keyof object
 
 /**
  * typeof
  * extract type from an object
  */
-const someObj = { foo: 42, bar: 'Hello' };
+const someObj = { foo: 42, bar: 'Hello' }
 type SomeObjType = typeof someObj
 
 /**
  * extract subtypes from a type
  */
 type WithSubTypes = {
-    sub : {one:string}[],
-    marine: number
+  sub: { one: string }[]
+  marine: number
 }
 type Extracted = WithSubTypes['sub']
+
+/**
+ *  Basic mapped type from
+ *  https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
+ */
+type OptionsFlags<Type> = {
+  [Property in keyof Type]: boolean
+}
 
 /**
  * infer
@@ -46,14 +54,13 @@ type NoneApplyTwo = NoneDistributive<number>
 type NoneApplyThree = NoneDistributive<string | number>
 type NoneApplyFour = NoneDistributive<string | number | boolean>
 
-
 // check if an empty object was passed
-type Empty<T extends {}> = {} extends Required<T> ? true : false;
-type isEmpty = Empty<{}>; // true
-type isNotEmpty = Empty<{ name: string }>; // false
+type Empty<T extends {}> = {} extends Required<T> ? true : false
+type isEmpty = Empty<{}> // true
+type isNotEmpty = Empty<{ name: string }> // false
 
 // length of a tuple
-type Bang<T extends [...any]> = T['length'] extends 1 ? true : void;
+type Bang<T extends [...any]> = T['length'] extends 1 ? true : void
 type TooShort = Bang<[]>
 type CorrectLength = Bang<[string]>
 type TooLong = Bang<[string, string]>
