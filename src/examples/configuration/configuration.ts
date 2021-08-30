@@ -19,12 +19,12 @@ export const settingFor = <T extends keyof Settings>(id: T, settings: Setting[])
   return find as Settings[T] //this is a lie
 }
 
-const autoSave = settingFor('editor.auto-save', [])
-autoSave.value.value
-autoSave.value.interval
+//const autoSave = settingFor('editor.auto-save', [])
+//autoSave.value.value
+//autoSave.value.interval
 
-const uiMode = settingFor('ui.mode', [])
-uiMode.value
+//const uiMode = settingFor('ui.mode', [])
+//uiMode.value
 
 type SettingsWithDefault = 'general.language' | 'ui.mode'
 type Defaults = {
@@ -40,16 +40,19 @@ type SettingsReturn<T extends SettingIdentifier> = T extends keyof Defaults ? Se
 
 declare function settingFantasyFor<T extends keyof Settings>(id: T, settings: Setting[]): SettingsReturn<T>
 
-var lang = settingFantasyFor('general.language', [])
-var auto = settingFantasyFor('editor.auto-save', [])
+//var lang = settingFantasyFor('general.language', [])
+//var auto = settingFantasyFor('editor.auto-save', [])
 
 // fake it till you make it
-function settingOverloadFor<T extends SettingsWithDefault>(id: T, settings: Setting[]): Settings[T]
-function settingOverloadFor<T extends keyof Settings>(id: T, settings: Setting[]): Settings[T] | undefined
-function settingOverloadFor<T extends keyof Settings>(id: T, settings: Setting[]) {
+export function settingOverloadFor<T extends SettingsWithDefault>(id: T, settings: Setting[]): Settings[T]
+export function settingOverloadFor<T extends keyof Settings>(
+  id: T,
+  settings: Setting[],
+): Settings[T]['value'] | undefined
+export function settingOverloadFor<T extends keyof Settings>(id: T, settings: Setting[]) {
   const found = settings.find((setting) => setting.type === id)
   if (found !== undefined) {
-    return found
+    return found.value
   }
   return defaults[id as SettingsWithDefault]
 }
