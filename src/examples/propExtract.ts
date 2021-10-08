@@ -1,8 +1,10 @@
-export type OwnProps = { my: string; two: number; cents: Date; optional?: string }
+export type OwnProps = { my: string; two: number; cents: string; optional?: string }
+
 export interface PassThroughProps {
   highly: string
   important: number
 }
+
 export type Props = OwnProps & PassThroughProps
 
 // https://rossbulat.medium.com/typescript-react-manipulating-prop-types-ec13f841a550
@@ -20,4 +22,13 @@ export const splitProps = (props: Props) => {
     own,
     passThrough,
   }
+}
+export function pick<T extends object, K extends keyof T>(object: T, keys: K[]) {
+  const result = {} as { [P in K]: T[P] }
+  keys.forEach((key) => {
+    if (key in object) {
+      result[key] = object[key]
+    }
+  })
+  return result
 }
