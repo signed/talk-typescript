@@ -57,5 +57,5 @@ export function settingOverloadFor<T extends keyof Settings>(id: T, settings: Se
   return defaults[id as SettingsWithDefault]
 }
 
-const result = settingOverloadFor('general.language', [])
-const blub = settingOverloadFor('editor.auto-save', [])
+const languageHasADefault = settingOverloadFor('general.language', [])
+const autosaveHasNoDefault = settingOverloadFor('editor.auto-save', [])
