@@ -14,9 +14,8 @@ interface Data {
   one: string
   two: number
 }
-type DataBuilder = Builder<Data>
 
-class Hmm implements DataBuilder {
+class DataBuilder implements Builder<Data> {
   one: Data['one'] | undefined
   two: Data['two'] | undefined
   withOne<Property>(value: Data['one']): Builder<Data> {
