@@ -16,13 +16,6 @@ interface Data {
 }
 type DataBuilder = Builder<Data>
 
-const ensure = <T>(value: T | undefined): T => {
-  if (value === undefined) {
-    throw new Error('mandatory')
-  }
-  return value
-}
-
 class Hmm implements DataBuilder {
   one: Data['one'] | undefined
   two: Data['two'] | undefined
