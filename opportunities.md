@@ -6,3 +6,5 @@
 
 [TypeScript Berlin/Sevilla Meetup](https://www.youtube.com/watch?v=RH49aarW6sU)
 [TS Meetup #5.5 - Tițian Cericova-Dragomir - Understanding Variance in the TypeScript Type System](https://www.youtube.com/watch?v=EInunOVRsUU)
+
+[shiki-twoslash](https://www.npmjs.com/package/shiki-twoslash) syntax highlight with type information
