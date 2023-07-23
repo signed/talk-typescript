@@ -5,7 +5,7 @@ export {}
 // explains
 const values = ['tell', 'me', 'why'] as const
 type Step = typeof values
-type ByHand = typeof values[0] | typeof values[1] | typeof values[2]
+type ByHand = (typeof values)[0] | (typeof values)[1] | (typeof values)[2]
 type TypeOfAllKeysAccessibleUsingANumberIndex = Step[number]
 
 // return typs based on input parameters

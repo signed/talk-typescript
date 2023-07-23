@@ -8,7 +8,6 @@ one = -1
 console.log(one, two)
 
 let _1st, _2nd
-
 ;[_1st, _2nd] = basicArray
 console.log(_1st, _2nd)
 
