@@ -1,4 +1,4 @@
 export interface Theme {
-    type: 'ui.theme';
-    value: 'Specular' | 'Amos' | 'Folie';
+  type: 'ui.theme'
+  value: 'Specular' | 'Amos' | 'Folie'
 }

@@ -1,19 +1,15 @@
 // https://stackoverflow.com/a/60390007
 
-type PublicInterface<T> = Pick<T, keyof T>;
+type PublicInterface<T> = Pick<T, keyof T>
 
 class DefaultBuilding {
-    constructor(private constructionYear: number, public name: string) {
-    }
+  constructor(private constructionYear: number, public name: string) {}
 
-    public color() {
-        return 'blue';
-    }
+  public color() {
+    return 'blue'
+  }
 
-    private security() {
-
-    }
+  private security() {}
 }
-
 
 type Building = PublicInterface<DefaultBuilding>

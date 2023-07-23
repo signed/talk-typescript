@@ -1,17 +1,16 @@
 interface One {
-    a: string
+  a: string
 }
 
 interface Two {
-    b: number
+  b: number
 }
 
-type Combined = One & Two;
+type Combined = One & Two
 
 const combined: Combined = {
-    a: 'a',
-    b: 7
-};
+  a: 'a',
+  b: 7,
+}
 
-console.log(combined);
-
+console.log(combined)
