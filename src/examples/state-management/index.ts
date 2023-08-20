@@ -1,6 +1,4 @@
-export type State = { value: string }
-
-export class Store {
+export class Store<State extends object> {
   _state: State
 
   constructor(initial: State) {
@@ -17,11 +15,10 @@ export class Store {
     return (number: number) => {
       const patch = callback(that, number)
 
-      if ('value' in patch) {
-        if (patch.value) {
-          this._state.value = patch.value
-        }
-      }
+      Object.entries(patch).forEach(([k, value]) => {
+        // @ts-ignore
+        this._state[k] = value
+      })
     }
   }
 }
