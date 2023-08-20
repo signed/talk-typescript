@@ -1,7 +1,7 @@
-export type State = string
+export type State = { value: string }
 
 export class Store {
-  _state: State = 'initial'
+  _state: State
 
   constructor(initial: State) {
     this._state = initial
@@ -16,8 +16,12 @@ export class Store {
 
     return (number: number) => {
       const patch = callback(that, number)
-      this._state = patch
-      return patch
+
+      if ('value' in patch) {
+        if (patch.value) {
+          this._state.value = patch.value
+        }
+      }
     }
   }
 }
