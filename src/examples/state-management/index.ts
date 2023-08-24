@@ -1,10 +1,11 @@
-type ActionCreator<TState> = (current: TState, ...args: any[]) => Partial<TState>
+// inspired from https://github.com/immerjs/immer/blob/main/src/types/types-external.ts#L102
+type ActionCreatorParameter<TState> = (current: TState, ...args: any[]) => Partial<TState>
 
-type Action<TState, U extends ActionCreator<TState>> = U extends (
+type Action<TState, TActionCreatorParameter> = TActionCreatorParameter extends (
   current: TState,
-  ...args: infer IArgs
+  ...args: infer ActionArguments
 ) => Partial<TState>
-  ? (...args: IArgs) => void
+  ? (...args: ActionArguments) => void
   : never
 
 export class Store<State extends object> {
@@ -18,7 +19,7 @@ export class Store<State extends object> {
     return this._state
   }
 
-  action<T extends ActionCreator<State>>(callback: T): Action<State, T> {
+  action<T extends ActionCreatorParameter<State>>(callback: T): Action<State, T> {
     const that = this._state
     const action = (...args: any[]) => {
       const patch = callback(that, ...args)
