@@ -1,6 +1,10 @@
 type ActionCreator<TState> = (current: TState, ...args: any[]) => Partial<TState>
-type Action<T, U extends ActionCreator<T>> = U extends (current: T, ...args: infer Args) => Partial<T>
-  ? (...args: Args) => void
+
+type Action<TState, U extends ActionCreator<TState>> = U extends (
+  current: TState,
+  ...args: infer IArgs
+) => Partial<TState>
+  ? (...args: IArgs) => void
   : never
 
 export class Store<State extends object> {
@@ -16,14 +20,14 @@ export class Store<State extends object> {
 
   action<T extends ActionCreator<State>>(callback: T): Action<State, T> {
     const that = this._state
-
-    return (number: number) => {
-      const patch = callback(that, number)
+    const action = (...args: any[]) => {
+      const patch = callback(that, ...args)
 
       Object.entries(patch).forEach(([k, value]) => {
         // @ts-ignore
         this._state[k] = value
       })
     }
+    return action as Action<State, T>
   }
 }
