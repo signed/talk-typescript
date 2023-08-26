@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest'
 import { settingOverloadFor } from './configuration'
 
 test('return the value from the settings', () => {

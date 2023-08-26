@@ -1,4 +1,4 @@
-export {}
+import { test, expect } from 'vitest'
 
 interface WithReadWriteProperty {
   property: string

@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest'
 import { extract, OwnProps, PassThroughProps, pick, Props, splitProps } from './propExtract'
 
 const withoutOptionalProp: Props = {

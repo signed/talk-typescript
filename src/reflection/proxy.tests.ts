@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest'
 import { Banana, ripeBanana } from './proxy'
 
 test('forward not trapped properties to the original object', () => {

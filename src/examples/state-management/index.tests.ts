@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest'
 import { Store } from './index'
 
 test('basic action', () => {
