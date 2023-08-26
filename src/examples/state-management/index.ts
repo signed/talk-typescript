@@ -1,4 +1,6 @@
-// inspired from https://github.com/immerjs/immer/blob/main/src/types/types-external.ts#L102
+// inspired from
+// https://github.com/immerjs/immer/blob/main/src/types/types-external.ts#L102
+// https://github.com/reduxjs/reselect/blob/master/src/types.ts#L97C13-L97C35
 type ActionCreatorParameter<TState> = (current: TState, ...args: any[]) => Partial<TState>
 
 type Action<TState, TActionCreatorParameter> = TActionCreatorParameter extends (
