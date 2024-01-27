@@ -13,7 +13,7 @@ test('basic action', () => {
   expectTypeOf(action).parameter(2).toMatchTypeOf<Date>()
   expectTypeOf(action).parameter(3).toMatchTypeOf<unknown>()
   assertType<(n: number, k: string, d: Date) => void>(action)
-  action(45, 'blub', new Date())
+  action(45, 'unused', new Date())
 
   expect(store.state.value).toEqual('updated 45')
 })
