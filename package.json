@@ -13,7 +13,7 @@
     "@signed/prettier-config": "0.1.0",
     "prettier": "3.2.4",
     "typescript": "5.2.2",
-    "vitest": "0.34.3"
+    "vitest": "1.2.2"
   },
   "prettier": "@signed/prettier-config"
 }
