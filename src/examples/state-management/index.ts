@@ -5,7 +5,7 @@ type ActionCreatorParameter<TState> = (current: TState, ...args: any[]) => Parti
 
 type Action<TState, TActionCreatorParameter> = TActionCreatorParameter extends (
   current: TState,
-  ...args: infer ActionArguments
+  ...argws: infer ActionArguments
 ) => Partial<TState>
   ? (...args: ActionArguments) => void
   : never

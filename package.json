@@ -7,7 +7,7 @@
     "test": "vitest --run",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "nit-pick": "pnpm format && pnpm typecheck && pnpm test"
+    "nitpick": "pnpm format && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@signed/prettier-config": "0.1.0",
