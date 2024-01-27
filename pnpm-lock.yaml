@@ -9,11 +9,11 @@ devDependencies:
     specifier: 0.1.0
     version: 0.1.0
   prettier:
-    specifier: 3.0.2
-    version: 3.0.2
+    specifier: 3.2.4
+    version: 3.2.4
   ts-node:
     specifier: 10.9.1
-    version: 10.9.1(@types/node@20.5.6)(typescript@5.2.2)
+    version: 10.9.1(@types/node@20.11.8)(typescript@5.2.2)
   typescript:
     specifier: 5.2.2
     version: 5.2.2
@@ -319,14 +319,16 @@ packages:
       { integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng== }
     dev: true
 
+  /@types/node@20.11.8:
+    resolution:
+      { integrity: sha512-i7omyekpPTNdv4Jb/Rgqg0RU8YqLcNsI12quKSDkRXNfx7Wxdm6HhK1awT3xTgEkgxPn3bvnSpiEAc7a7Lpyow== }
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
   /@types/node@20.5.1:
     resolution:
       { integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg== }
-    dev: true
-
-  /@types/node@20.5.6:
-    resolution:
-      { integrity: sha512-Gi5wRGPbbyOTX+4Y2iULQ27oUPrefaB0PxGQJnfyWN3kvEDGM3mIB5M/gQLmitZf7A9FmLeaqxD3L1CXpm3VKQ== }
     dev: true
 
   /@vitest/expect@0.34.3:
@@ -604,9 +606,9 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /prettier@3.0.2:
+  /prettier@3.2.4:
     resolution:
-      { integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ== }
+      { integrity: sha512-FWu1oLHKCrtpO1ypU6J0SbK2d9Ckwysq6bHj/uaCP26DxrPpppCLQRGVuqAxSTvhF00AcvDRyYrLNW7ocBhFFQ== }
     engines: { node: '>=14' }
     hasBin: true
     dev: true
@@ -680,7 +682,7 @@ packages:
     engines: { node: '>=14.0.0' }
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.5.6)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@20.11.8)(typescript@5.2.2):
     resolution:
       { integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw== }
     hasBin: true
@@ -700,7 +702,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.5.6
+      '@types/node': 20.11.8
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -728,6 +730,11 @@ packages:
   /ufo@1.3.0:
     resolution:
       { integrity: sha512-bRn3CsoojyNStCZe0BG0Mt4Nr/4KF+rhFlnNXybgqt5pXHNFRlqinSoQaTrGyzE4X8aHplSb+TorH+COin9Yxw== }
+    dev: true
+
+  /undici-types@5.26.5:
+    resolution:
+      { integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA== }
     dev: true
 
   /v8-compile-cache-lib@3.0.1:
