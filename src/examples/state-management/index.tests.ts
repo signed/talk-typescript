@@ -1,5 +1,7 @@
 import { test, expect, assertType, expectTypeOf } from 'vitest'
-import { Store } from './index'
+import { Store } from './index.js'
+
+type State = { value: string }
 
 test('basic action', () => {
   const store = new Store({ value: 'initial' })

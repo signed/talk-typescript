@@ -16,11 +16,7 @@ namespace StringEnumeration {
 type StringEnumerationStrings = Exclude<keyof typeof StringEnumeration, 'valuesAsArray'>
 
 {
-  const assertUnreachable = (_arg: never): never => {
-    throw new Error('Did not expect this be executed ever')
-  }
-
-  const exhaustiveSwitch = (value: StringEnumeration) => {
+  const exhaustiveSwitch = (value: StringEnumeration): number => {
     switch (value) {
       case StringEnumeration.One:
         return 1
@@ -29,7 +25,6 @@ type StringEnumerationStrings = Exclude<keyof typeof StringEnumeration, 'valuesA
       case StringEnumeration.Three:
         return 3
     }
-    assertUnreachable(value)
   }
 }
 

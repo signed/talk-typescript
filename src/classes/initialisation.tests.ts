@@ -2,6 +2,7 @@ import { test, expect } from 'vitest'
 
 export class AssignedInParameter {
   // derived will be undefined, is this a bug in typescript?
+  // @ts-expect-error with strictest settings TypeScript detects this as problematic
   readonly derived: string = this.parameter
 
   constructor(public readonly parameter: string) {}

@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest'
-import { settingOverloadFor } from './configuration'
+import { settingOverloadFor } from './configuration.js'
 
 test('return the value from the settings', () => {
   const language = settingOverloadFor('general.language', [{ type: 'general.language', value: 'ES' }])

@@ -1,5 +1,8 @@
 // https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/?utm_source=typescript-weekly.com&utm_campaign=typescript_weekly_172&utm_medium=email#contextual-narrowing
-function makeUnique<T, C extends Set<T> | T[]>(collection: C, comparer: (x: T, y: T) => number): C {
+function makeUnique<T, C extends Set<T> | T[]>(
+  collection: C,
+  comparer: (x: T | undefined, y: T | undefined) => number,
+): C {
   // Early bail-out if we have a Set.
   // We assume the elements are already unique.
   if (collection instanceof Set) {

@@ -3,6 +3,7 @@
   "description": "talk about nice features in typescript",
   "private": true,
   "packageManager": "pnpm@8.15.0",
+  "type": "module",
   "scripts": {
     "test": "vitest --run",
     "typecheck": "tsc --noEmit",
@@ -11,6 +12,9 @@
   },
   "devDependencies": {
     "@signed/prettier-config": "0.1.0",
+    "@tsconfig/node21": "21.0.1",
+    "@tsconfig/strictest": "2.0.2",
+    "@types/node": "20.11.8",
     "prettier": "3.2.4",
     "typescript": "5.3.3",
     "vitest": "1.2.2"

@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest'
-import { Banana, ripeBanana } from './proxy'
+import { Banana, ripeBanana } from './proxy.js'
 
 test('forward not trapped properties to the original object', () => {
   expect(ripeBanana.brand).toBe('blue banana')

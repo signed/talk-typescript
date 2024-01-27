@@ -1,8 +1,8 @@
 // https://www.reddit.com/r/typescript/comments/d8w658/dynamic_property_lookup_via_type/
-import { AutoSave } from './settings/auto-save'
-import { Language } from './settings/language'
-import { Mode } from './settings/mode'
-import { Theme } from './settings/theme'
+import { AutoSave } from './settings/auto-save.js'
+import { Language } from './settings/language.js'
+import { Mode } from './settings/mode.js'
+import { Theme } from './settings/theme.js'
 
 type Setting = Theme | Mode | Language | AutoSave
 type SettingIdentifier = Setting['type']

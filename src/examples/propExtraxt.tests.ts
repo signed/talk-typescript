@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest'
-import { extract, OwnProps, PassThroughProps, pick, Props, splitProps } from './propExtract'
+import { extract, OwnProps, PassThroughProps, pick, Props, splitProps } from './propExtract.js'
 
 const withoutOptionalProp: Props = {
   cents: 'able',

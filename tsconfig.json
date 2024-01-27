@@ -1,10 +1,7 @@
 {
+  "extends": ["@tsconfig/node21/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "outDir": "out",
-    "skipLibCheck": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
   },
 }

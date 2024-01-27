@@ -2,7 +2,7 @@ export interface OwnProps {
   my: string
   two: number
   cents: string
-  optional?: string
+  optional?: string | undefined
 }
 
 export interface PassThroughProps {
