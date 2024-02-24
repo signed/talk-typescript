@@ -2,7 +2,7 @@
   "name": "talk-typescript",
   "description": "talk about nice features in typescript",
   "private": true,
-  "packageManager": "pnpm@8.15.0",
+  "packageManager": "pnpm@8.15.3",
   "type": "module",
   "scripts": {
     "test": "vitest --run",
