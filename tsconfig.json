@@ -2,6 +2,6 @@
   "extends": ["@tsconfig/node21/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
     "noUnusedLocals": false,
-    "noUnusedParameters": false,
-  },
+    "noUnusedParameters": false
+  }
 }
